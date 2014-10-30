@@ -175,9 +175,8 @@ class LearningSwitch (object):
         msg.data = event.ofp # 6a
       
         self.connection.send(msg)
-    # add by Domi
-    print 'finish'
-    print("%.6f" % time.time())
+    # add by Domiss
+    log.info('print_time finish_time ' + ("%.6f" % time.time()))
         
 
 

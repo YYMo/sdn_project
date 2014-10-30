@@ -11,6 +11,16 @@ reconnect_all.sh : reconnecnt all the standlone swithes to a controller
 Example:
 sudo ./reconnect_all.sh 127.0.0.1 6008
 
-disconnect_all/sh : disconnect all the swithces
+disconnect_all.sh : disconnect all the swithces
 Example:
 sudo ./disconnect_all.sh
+
+c_l2.sh : runinng l2_learning on pox while record logs (this is the input source of stats_avg_flow_time.sh)
+Example:
+sudo ./c_l2.sh 6677
+
+stats_avg_flow_time.sh : print the average time to deal with a packet_in event in controller in the past 5 sec
+Example:
+(running a controller recording logs first, the path of log should be the same as this file)
+stats_avg_flow_time.sh
+

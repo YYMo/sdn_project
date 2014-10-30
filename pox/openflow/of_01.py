@@ -174,8 +174,7 @@ def handle_PORT_STATUS (con, msg): #A
 
 def handle_PACKET_IN (con, msg): #A
   # add by Domi
-  print 'packet in'
-  print("%.6f" % time.time())
+  log.info('print_time packet_in ' + ("%.6f" % time.time()))
   e = con.ofnexus.raiseEventNoErrors(PacketIn, con, msg)
   if e is None or e.halt != True:
     con.raiseEventNoErrors(PacketIn, con, msg)
