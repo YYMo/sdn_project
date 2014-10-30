@@ -1,5 +1,8 @@
 SDN coure project
 
+!! install awk fisrt 
+sudo apt-get install gawk (in Ubuntu)
+
 chg_ctrl.sh : change the controller of certain swith
 Example:
 sudo ./chg_ctrl.sh s0 127.0.0.1 6007
