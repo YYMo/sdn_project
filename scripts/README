@@ -1,0 +1,13 @@
+SDN coure project
+
+chg_ctrl.sh : change the controller of certain swith
+Example:
+sudo ./chg_ctrl.sh s0 127.0.0.1 6007
+
+reconnect_all.sh : reconnecnt all the standlone swithes to a controller
+Example:
+sudo ./reconnect_all.sh 127.0.0.1 6008
+
+disconnect_all/sh : disconnect all the swithces
+Example:
+sudo ./disconnect_all.sh
