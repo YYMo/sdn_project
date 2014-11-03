@@ -1,4 +1,5 @@
 SDN coure project
+sudo mn --switch ovsk --controller ref --topo tree,depth=2,fanout=8
 
 !! install awk fisrt 
 sudo apt-get install gawk (in Ubuntu)
