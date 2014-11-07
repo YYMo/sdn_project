@@ -38,7 +38,13 @@ class SocketReceiver:
                 connection.close()
 
 run = 0
+def parseAdd(add):
+    str = add.split(',', '(', ')')
+    return str
 
+def parse(msg):
+    str = msg.split(' ')
+    return str
 
 def main():
     global run
@@ -49,11 +55,19 @@ def main():
     sckt_thread.start()
 
     while True:
-        time.sleep(10)
+        time.sleep(3)
         while queue.qsize():
             try:
-                add = self.queue.get(0)
-                avg = self.queue.get(0)
+                add = queue.get(0)
+                msg = queue.get(0)
+
+                command = parse(msg)
+                print command[0]
+                print command[0] == "nPackets"
+                address = parseAdd(add)
+                if(command[0] == "nPackets"):
+		    print 'a match report'
+		    print address[0],":",  command[1]
                 print "From queue, get msg:", add, avg
             except:
                 pass
