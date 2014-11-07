@@ -15,7 +15,7 @@ class SocketReceiver:
         self.serverObj.listen(5)
 
     def loop(self):
-        global runZZ
+        global run
         while True:
             infds,outfds,errfds = select([self.serverObj,],[],[],5)   
             if(run == 0):
@@ -55,6 +55,7 @@ def main():
     sckt_thread.start()
 
     while True:
+<<<<<<< HEAD
         time.sleep(3)
         while queue.qsize():
             try:
@@ -68,6 +69,14 @@ def main():
                 if(command[0] == "nPackets"):
 		    print 'a match report'
 		    print address[0],":",  command[1]
+=======
+        print 'asd'
+        time.sleep(5)
+        while queue.qsize():
+            try:
+                add = queue.get(0)
+                avg = queue.get(0)
+>>>>>>> fb3587fe0b82bf6be65f2485ef9dc89cd73c668b
                 print "From queue, get msg:", add, avg
             except:
                 pass

@@ -30,5 +30,5 @@ do
     fi
     avg_time=`awk '{a+=$1}END{print a/NR}' temp_result.txt`
     echo 'avg time: '$avg_time
-    python send.py $serverHost $serverPort $num_packets
+    python send.py $serverHost $serverPort "nPackets $num_packets"
 done
