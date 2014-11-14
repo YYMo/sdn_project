@@ -53,8 +53,8 @@ def main():
         time.sleep(5)
         while queue.qsize():
             try:
-                add = self.queue.get(0)
-                avg = self.queue.get(0)
+                add = queue.get(0)
+                avg = queue.get(0)
                 print "From queue, get msg:", add, avg
             except:
                 pass
