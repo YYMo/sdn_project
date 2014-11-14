@@ -46,7 +46,7 @@ def main():
     sr = SocketReceiver(queue)
     sckt_thread = threading.Thread(target = sr.loop)
     sckt_thread.start()
-    while(queue.qsize()){
+    while queue.qsize():
         try:
             add = self.queue.get(0)
             avg = self.queue.get(0)
@@ -54,7 +54,6 @@ def main():
         except:
             pass
 
-    }
 
 if __name__ == '__main__':
     main()
