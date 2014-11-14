@@ -1,7 +1,11 @@
 #!/bin/bash
 
 start_line=1
-
+serverHost=localhost
+serverPort=50006
+serverHost=$1
+serverPort=$2
+serverName=$3
 while ((1<10))
 do
     sleep 5
@@ -26,4 +30,5 @@ do
     fi
     avg_time=`awk '{a+=$1}END{print a/NR}' temp_result.txt`
     echo 'avg time: '$avg_time
+    python send.py $serverHost $serverPort $num_packets
 done
