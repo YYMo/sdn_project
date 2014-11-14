@@ -3,6 +3,7 @@ from select import *
 import sys
 import Queue
 import threading
+import time
 
 class SocketReceiver:
     def __init__(self, queue):
@@ -14,7 +15,7 @@ class SocketReceiver:
         self.serverObj.listen(5)
 
     def loop(self):
-        global run
+        global runZZ
         while True:
             infds,outfds,errfds = select([self.serverObj,],[],[],5)   
             if(run == 0):
@@ -46,13 +47,16 @@ def main():
     sr = SocketReceiver(queue)
     sckt_thread = threading.Thread(target = sr.loop)
     sckt_thread.start()
-    while queue.qsize():
-        try:
-            add = self.queue.get(0)
-            avg = self.queue.get(0)
-            print "From queue, get msg:", add, avg
-        except:
-            pass
+
+    while True:
+        time.sleep(10)
+        while queue.qsize():
+            try:
+                add = self.queue.get(0)
+                avg = self.queue.get(0)
+                print "From queue, get msg:", add, avg
+            except:
+                pass
 
 
 if __name__ == '__main__':
