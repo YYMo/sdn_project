@@ -15,7 +15,7 @@ class SocketReceiver:
         self.serverObj.listen(5)
 
     def loop(self):
-        global runZZ
+        global run
         while True:
             infds,outfds,errfds = select([self.serverObj,],[],[],5)   
             if(run == 0):
@@ -49,7 +49,8 @@ def main():
     sckt_thread.start()
 
     while True:
-        time.sleep(10)
+        print 'asd'
+        time.sleep(5)
         while queue.qsize():
             try:
                 add = self.queue.get(0)
