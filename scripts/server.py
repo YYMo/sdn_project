@@ -4,6 +4,7 @@ import sys
 import Queue
 import threading
 import time
+import os
 
 class SocketReceiver:
     def __init__(self, queue):
@@ -63,7 +64,7 @@ def main():
                 command = parse(msg)
                 print command[0]
                 address = parseAdd(add)
-                if(command[0] == "nPackets"):
+                if(command[0] == 'nPackets'): #nPackets 123
                     print 'a match report'
                     print address[0],":",  command[1]
             except:
