@@ -1,8 +1,9 @@
 #!/bin/bash
-#./monitor 192.168.44.32 6789
+#./monitor 192.168.44.32 6789 5(s)
 $fail_number
 $controller_ip
 $controller_port
+$interval
 
 echo $#
 if [ $# -gt 1 ]
@@ -15,9 +16,15 @@ then
     controller_port=$2
 fi
 
+
+if [ $# -gt 3 ]
+then
+    interval=$3
+fi
+
 while ((1<10))
 do
-    sleep 2
+    sleep $interval
     ./check_fail.sh > fail_nodes.txt
     fail_number=` wc -l fail_nodes.txt | awk '{print $1}'`
     if [ ${fail_number} -eq 0 ]
