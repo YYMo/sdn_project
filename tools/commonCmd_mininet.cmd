@@ -10,3 +10,8 @@ sudo ovs-vsctl set-fail-mode br0 secure
 
 sudo ovs-ofctl dump-flows br0
 
+sudo ovs-dpctl show
+
+sudo ovs-dpctl dupm-dps
+
+sudo mn --controller remote --topo tree,depth=6,fanout=2
