@@ -55,29 +55,17 @@ def main():
     sckt_thread.start()
 
     while True:
-<<<<<<< HEAD
         time.sleep(3)
         while queue.qsize():
             try:
                 add = queue.get(0)
                 msg = queue.get(0)
-
                 command = parse(msg)
                 print command[0]
-                print command[0] == "nPackets"
                 address = parseAdd(add)
                 if(command[0] == "nPackets"):
-		    print 'a match report'
-		    print address[0],":",  command[1]
-=======
-        print 'asd'
-        time.sleep(5)
-        while queue.qsize():
-            try:
-                add = queue.get(0)
-                avg = queue.get(0)
->>>>>>> fb3587fe0b82bf6be65f2485ef9dc89cd73c668b
-                print "From queue, get msg:", add, avg
+                    print 'a match report'
+                    print address[0],":",  command[1]
             except:
                 pass
 
