@@ -1,0 +1,13 @@
+/**
+Different means of starting up a controller lead to different process user and information depths
+Below are two ways starting up the same kind of controller
+*/
+
+
+./pox.py --verbose openflow.of_01 --port=6666 forwarding.l2_learning
+sudo ./pox.py log --file=pox.log,w openflow.of_01 --port=6667 forwarding.l2_learning
+
+//this leads two the following output of poll_usage:
+{'username': 'mininet', 'status': 'sleeping', 'cpu_times': pcputimes(user=2.47, system=1.04), 'name': 'python2.7', 'cpu_percent': 0.3, 'pid': 7148, 'io_counters': pio(read_count=1257, write_count=203, read_bytes=0, write_bytes=0), 'connections': [pconn(fd=7, family=2, type=1, laddr=('0.0.0.0', 6666), raddr=(), status='LISTEN')], 'memory_percent': 1.3517867949292277, 'threads': [pthread(id=7148, user_time=1.23, system_time=0.49), pthread(id=7150, user_time=0.03, system_time=0.0), pthread(id=7151, user_time=1.18, system_time=0.54), pthread(id=7152, user_time=0.01, system_time=0.0)], 'memory_info_ex': pextmem(rss=14090240, vms=271941632, shared=3584000, text=2871296, lib=0, data=236576768, dirty=0), 'open_files': [], 'num_fds': 8, 'cwd': '/home/mininet/pox'}
+
+{'username': 'root', 'status': 'sleeping', 'cpu_times': pcputimes(user=0.4, system=0.13), 'name': 'python2.7', 'cpu_percent': 0.3, 'pid': 7377, 'io_counters': None, 'connections': None, 'memory_percent': 1.3541445625948019, 'threads': [pthread(id=7377, user_time=0.26, system_time=0.08), pthread(id=7379, user_time=0.0, system_time=0.0), pthread(id=7380, user_time=0.12, system_time=0.06), pthread(id=7381, user_time=0.0, system_time=0.0)], 'memory_info_ex': pextmem(rss=14114816, vms=272203776, shared=3592192, text=2871296, lib=0, data=236838912, dirty=0), 'open_files': None, 'num_fds': None, 'cwd': None}
