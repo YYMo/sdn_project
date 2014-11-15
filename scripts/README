@@ -25,3 +25,6 @@ Example:
 (running a controller recording logs first, the path of log should be the same as this file)
 stats_avg_flow_time.sh
 
+poll_usage.py : print the CPU, RAM and other usages information for specified controllers every 20s
+
+sample usage: ./poll_usage.py -u mininet -p python2.7 -l \/home\/mininet\/pox
