@@ -7,17 +7,18 @@ $controller_port
 echo $#
 if [ $# -gt 1 ]
 then
-    $controller_ip=$1
+    controller_ip=$1
 fi
 
 if [ $# -gt 2 ]
 then
-    $controller_port=$2
+    controller_port=$2
 fi
 
 while ((1<10))
 do
     sleep 2
+    ./check_fail.sh > fail_nodes.txt
     fail_number=` wc -l fail_nodes.txt | awk '{print $1}'`
     if [ ${fail_number} -eq 0 ]
     then
