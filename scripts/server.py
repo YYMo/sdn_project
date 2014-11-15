@@ -63,9 +63,12 @@ def main():
                 command = parse(msg)
                 print command[0]
                 address = parseAdd(add)
-                if(command[0] == "nPackets"):
+                if(command[0] == 'nPackets'):
                     print 'a match report'
                     print address[0],":",  command[1]
+                if(command[0] == 'Connect'):
+                    print 'a connect quest'
+                    
             except:
                 pass
 
