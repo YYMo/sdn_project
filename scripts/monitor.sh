@@ -24,7 +24,7 @@ fi
 
 while ((1<10))
 do
-    sleep $interval
+    sleep $3
     ./check_fail.sh > fail_nodes.txt
     fail_number=` wc -l fail_nodes.txt | awk '{print $1}'`
     if [ ${fail_number} -eq 0 ]
