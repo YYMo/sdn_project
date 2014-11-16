@@ -33,6 +33,7 @@ if [ ! -e $prev_setController_time ]
 then
    echo "no previous set time..." 
    prev_set=$(date -d '01/01/1973 00:00:00' +'%m:%d:%Y:%H:%M:%S')
+   # notice: prev_setController_time='setController.time'
    prev_set_output=$(date -d '01/01/1973 00:00:00' +'%m/%d/%Y %H:%M:%S')
 else
    prev_setTime=`awk -F"|" '{print $1}' $prev_setController_time`

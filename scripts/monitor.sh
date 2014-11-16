@@ -31,6 +31,7 @@ do
     then
         echo 'no fails'
     else 
+        python send.py $1 50006 'new Connection'
     	./reconnect_fail.sh $1 $2
     fi
 done
