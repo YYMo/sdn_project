@@ -3,16 +3,21 @@
 prev_hit_file='hit_miss.out'
 prev_setController_time='setController.time'
 
+proc_output_prev_hit()
+{
+	# output the current hit number to a $prev_hit_file file for the next run
+	ovs-dpctl show | \
+	sed -n -e '2{p;q}' | \
+	awk -F":" '{print $1","$2","$3","$4","$5}' | \
+	awk -F" " '{print $2","$3","$4}' > "$prev_hit_file"
+}
+
 # check if the previous hit number has been recorded
 if [ ! -e $prev_hit_file ]
 then
-    
-    ovs-dpctl show | \
-    sed -n -e '2{p;q}' | \
-    awk -F":" '{print $1","$2","$3","$4","$5}' | \
-    awk -F" " '{print $2","$3","$4}' > "$prev_hit_file"
-
-    echo "$prev_hit_file has been created for the first time"
+    proc_output_prev_hit
+    #echo "$prev_hit_file has been created for the first time"
+    echo "0"
     exit 1
 
 fi
@@ -71,7 +76,5 @@ else
 fi
 
 # output the current hit number to a $prev_hit_file file for the next run
-ovs-dpctl show | \
-sed -n -e '2{p;q}' | \
-awk -F":" '{print $1","$2","$3","$4","$5}' | \
-awk -F" " '{print $2","$3","$4}' > "$prev_hit_file"
+proc_output_prev_hit
+
