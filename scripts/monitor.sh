@@ -52,7 +52,7 @@ do
         echo 'no fails' > t.txt
     else 
         echo 'Connection Loss, request for a controllers'
-        python send.py $1 $4 "newCon"
+        python send.py $1 $4 "newCon-"
         sleep ${sleep_time}
         continue
 
@@ -60,13 +60,13 @@ do
 
     #3 packets per min or avg_time
     avg_time=`cat avg_time10000X`
-    if [ ${avg_time} -lt 20000 ]
+    if [ ${avg_time} -lt 200 ]
     then
         echo 'no fails' > t.txt
     else
         echo 'no fails' > t.txt
         #echo '#3 fail'
-        #python send.py $1 ${serverPort} "newCon ${startPort}"
+        python send.py $1 $4 "newCon3"
         #./disconnect_all.sh
         #./reconnect_all.sh $1 ${startPort}
         #startPort=`expr $startPort + 1`
