@@ -33,6 +33,6 @@ do
     #echo ${serverHost}
     #echo ${serverPort}
     python send.py ${serverHost} ${serverPort} "nPackets $num_packets ${avg_time}"
-    python send.py localhost ${serverPort} "localnPackets ${serverHost} $num_packets ${avg_time}"
+    python send.py localhost ${serverPort} "localnPackets ${serverHost} ${fileName} ${avg_time}"
     echo ${avg_time} > avg_time
 done

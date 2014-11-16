@@ -137,6 +137,7 @@ def main():
                 elif command[0] == 'localnPackets':
                     avg_10000x = str(int(float(command[3])*10000))
                     con_dict[command[1]] = (command[2], avg_10000x)
+                    outputfile('connect_info.txt', 'Controller on port: ' + command[2] + ' avg speed: ' + str(command[3]), 'a')
                 
                 elif command[0] == 'set':
                     cmd = './disconnect_all.sh '+ " &"
