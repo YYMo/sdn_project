@@ -80,6 +80,7 @@ def main():
                     con_dict[add] = (command[1], avg_10000x)
                     #print con_dict
                 elif command[0] == 'newCon2': #newCon 12345
+                    startport = 12001
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
                     
