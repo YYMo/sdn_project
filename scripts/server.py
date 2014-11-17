@@ -92,18 +92,31 @@ def main():
                     thread5.start()
                 elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
+                    tmin = 100000
+                    tindex = False
+                    for i in con_dict:
+                        if int(con_dict[i]) < tmin:
+                            tindex = i
+                            tmin = int(con_dict[i])
+                    if tindex != False:
+                        syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
+                        print syscmd
+                        thread8 = threading.Thread(target = execc)
+                        thread8.start()
+                        continue
 
                     syscmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log'
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
-                    time.sleep(3)
+                    time.sleep(1)
                     syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log'
                     thread2 = threading.Thread(target = execc)
                     thread2.start()
-                    time.sleep(3)
+                    time.sleep(1)
                     
 
-                    syscmd = 'python send.py ' + add + " 50006 " + + '\'' + "set " + startpot + '\''
+                    syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
+                    print syscmd
                     thread7 = threading.Thread(target = execc)
                     thread7.start()
 
@@ -114,7 +127,7 @@ def main():
                     con_dict[command[1]] = (command[2], avg_10000x)
                 elif command[0] == 'set':
                     print 'set'
-                    syscmd = './reconnect_all.sh' + add + command[1]
+                    syscmd = './reconnect_all.sh ' + add + " " + command[1]
                     thread6 = threading.Thread(target = execc)
                     thread6.start()
 
