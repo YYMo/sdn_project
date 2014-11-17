@@ -13,7 +13,7 @@ do
     echo 'start: '$start_line
     echo 'end: '$line_num
     ((deal_num=$line_num-$start_line))
-    echo 'deal with: '$deal_num
+    #echo 'deal with: '$deal_num
 
     awk "NR=="${start_line},"NR=="${line_num} ${fileName} | \
     awk '/print_time/'  | awk '{print $3}' | \
@@ -29,8 +29,8 @@ do
        continue
     fi
     avg_time=`awk '{a+=$1}END{print a/NR}' temp_result.txt`
-    echo 'avg time: '$avg_time
-    echo ${serverHost}
-    echo ${serverPort}
+    #echo 'avg time: '$avg_time
+    #echo ${serverHost}
+    #echo ${serverPort}
     python send.py ${serverHost} ${serverPort} "nPackets $num_packets ${avg_time}"
 done

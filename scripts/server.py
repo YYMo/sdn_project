@@ -66,7 +66,9 @@ def main():
     sckt_thread.start()
     while True:
         time.sleep(1)
-        print con_dict
+        syscmd = 'echo ' + str(con_dict)+ ' > con_dict'
+        thread3 = threading.Thread(target = execc)
+        thread3.start()
         while queue.qsize():
             try:
                 add = queue.get(0)
@@ -78,17 +80,15 @@ def main():
 
                 if command[0] == 'nPackets': #nPackets 123
                     avg_10000x = str(int(float(command[2])*10000))
-                    if con_dict.has_key(add) == False:
-                        con_dict[add] = {}
-                        con_dict[add][port] = avg_10000x
+                    con_dict[add] = (command[1], avg_10000x)
                     print 'a match report'
                     syscmd = 'echo ' + command[1] + ' > packets_per_min'
-                    thread1 = threading.Thread(target = execc)
-                    thread1.start()
+                    thread4 = threading.Thread(target = execc)
+                    thread4.start()
                     
                     syscmd = 'echo ' + avg_10000x + ' > avg_time10000X'
-                    thread1 = threading.Thread(target = execc)
-                    thread1.start()
+                    thread5 = threading.Thread(target = execc)
+                    thread5.start()
                 print 'here'
                 if command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
@@ -96,10 +96,12 @@ def main():
                     syscmd = './c_l2.sh ' + command[1] + " " + command[1] + '.log'
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
-                    sleep(3)
-                    syscmd = './stats_avg_flow_time.sh ' + add + " " + command[1] + '.log'
-                    thread1 = threading.Thread(target = execc)
-                    thread1.start()
+                    time.sleep(1)
+                    syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + command[1] + '.log'
+                    thread2 = threading.Thread(target = execc)
+                    thread2.start()
+                    time.sleep(1)
+
                     
             except:
                 pass

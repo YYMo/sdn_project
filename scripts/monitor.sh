@@ -52,7 +52,7 @@ do
 
     #3 packets per min or avg_time
     avg_time=`cat avg_time10000X`
-    if [ ${avg_time} -lt 200 ]
+    if [ ${avg_time} -lt 20000 ]
     then
         echo 'good responce time'
     else
