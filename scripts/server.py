@@ -102,10 +102,14 @@ def main():
                     print 'a match newCon'
                     tmin = 100000
                     tindex = False
+                    n = False
                     for i in con_dict:
+                        b = True
                         syscmd1 = 'python send.py ' + add + " 50006 " + "\"set " +  "12000" + "\""
                         os.system(syscmd1)
                         print syscmd1
+                    if b:
+                        continue        
                         #subprocess.Popen(syscmd1, shell=True)
                         
                         print 'inloop'
