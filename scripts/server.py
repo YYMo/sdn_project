@@ -99,7 +99,7 @@ def main():
                             tindex = i
                             tmin = int(con_dict[i])
                     if tindex != False:
-                        syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
+                        syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(con_dict[tindex]) + "\""
                         print syscmd
                         thread8 = threading.Thread(target = execc)
                         thread8.start()
