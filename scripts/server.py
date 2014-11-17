@@ -103,7 +103,7 @@ def main():
                     time.sleep(3)
                     
 
-                    syscmd = 'python send.py ' + add + " 50006 " + startpot
+                    syscmd = 'python send.py ' + add + " 50006 " + + '\'' + "set " + startpot'\''
                     thread7 = threading.Thread(target = execc)
                     thread7.start()
 
