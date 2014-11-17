@@ -93,7 +93,7 @@ def main():
                 elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
 
-                    syscmd = './c_l2.sh ' + add + " " + str(startport) + " " + str(startport) + '.log'
+                    syscmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log'
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
                     time.sleep(3)
