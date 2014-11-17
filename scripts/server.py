@@ -98,6 +98,8 @@ def main():
                         if int(con_dict[i]) < tmin:
                             tindex = i
                             tmin = int(con_dict[i])
+
+                    print 'index', tindex
                     if tindex != False:
                         syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(con_dict[tindex]) + "\""
                         print syscmd
