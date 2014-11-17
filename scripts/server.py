@@ -89,8 +89,7 @@ def main():
                     syscmd = 'echo ' + avg_10000x + ' > avg_time10000X'
                     thread5 = threading.Thread(target = execc)
                     thread5.start()
-                print 'here'
-                if command[0] == 'newCon': #newCon 12345
+                elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
                     print 'create a controller on port' + command[1]
                     syscmd = './c_l2.sh ' + command[1] + " " + command[1] + '.log'
@@ -101,6 +100,10 @@ def main():
                     thread2 = threading.Thread(target = execc)
                     thread2.start()
                     time.sleep(3)
+                elif command[0] == 'localnPackets':
+                    print 'local'
+                    avg_10000x = str(int(float(command[3])*10000))
+                    con_dict[command[1]] = (command[2], avg_10000x)
 
                     
             except:

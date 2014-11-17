@@ -4,6 +4,7 @@ serverHost = 'localhost'
 serverPort = 50006
 
 message = ['Hello network world']
+#Echo:nPackets 4 0.0070265
 if len(sys.argv) > 1:
     print sys.argv[1]
     serverHost = sys.argv[1]
