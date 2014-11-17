@@ -5,6 +5,7 @@ import Queue
 import threading
 import time
 import os
+import subprocess
 
 class SocketReceiver:
     def __init__(self, queue):
@@ -60,6 +61,7 @@ def main():
     global syscmd
     startport = 12000
     con_dict = {}
+    #con_dict = {'1.1.1.1':'123'}
     run = 1
     queue = Queue.Queue()
     sr = SocketReceiver(queue)
@@ -67,9 +69,12 @@ def main():
     sckt_thread.start()
     while True:
         time.sleep(3)
-        syscmd = 'echo ' + str(con_dict)+ ' > con_dict'
-        thread3 = threading.Thread(target = execc)
-        thread3.start()
+        #syscmd = 'echo ' + str(con_dict)+ ' > con_dict'
+        #print syscmd
+        #subprocess.Popen(syscmd, shell=True)
+        #thread3 = threading.Thread(target = execc)
+        #thread3.start()
+        print con_dict
         while queue.qsize():
             try:
                 add = queue.get(0)
@@ -83,56 +88,65 @@ def main():
                     avg_10000x = str(int(float(command[2])*10000))
                     con_dict[add] = (command[1], avg_10000x)
                     print 'a match report'
-                    syscmd = 'echo ' + command[1] + ' > packets_per_min'
-                    thread4 = threading.Thread(target = execc)
-                    thread4.start()
+                    #syscmd = 'echo ' + command[1] + ' > packets_per_min'
+                    #subprocess.Popen(syscmd, shell=True)
+                    #thread4 = threading.Thread(target = execc)
+                    #thread4.start()
                     
-                    syscmd = 'echo ' + avg_10000x + ' > avg_time10000X'
-                    thread5 = threading.Thread(target = execc)
-                    thread5.start()
+                    #syscmd = 'echo ' + avg_10000x + ' > avg_time10000X'
+                    #subprocess.Popen(syscmd, shell=True)
+                    #thread5 = threading.Thread(target = execc)
+                    #thread5.start()
                 elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
                     tmin = 100000
                     tindex = False
                     for i in con_dict:
                         print 'inloop'
-                        if int(con_dict[i]) < tmin:
+                        print i
+                        print 1234
+                        print 'a', 1234 < tmin
+                        if 1234 < tmin:
+                            print 1234
                             tindex = i
-                            tmin = int(con_dict[i])
-
-                    print 'index', tindex
+                            tmin = i1234
+                        print 'dddd'
+                    print 's'    
+                    print 'index'
                     if tindex != False:
-                        syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(con_dict[tindex]) + "\""
-                        print syscmd
-                        thread8 = threading.Thread(target = execc)
-                        thread8.start()
+                        syscmd1 = 'python send.py ' + add + " 50006 " + "\"set " + str(tindex) + "\""
+                        print syscmd1
+                        subprocess.Popen(syscmd1, shell=True)
+                        #thread8 = threading.Thread(target = execc)
+                        #thread8.start()
                         continue
 
-                    syscmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log'
-                    thread1 = threading.Thread(target = execc)
-                    thread1.start()
+                    syscmd2 = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log'
+                    subprocess.Popen(syscmd2, shell=True)
+                    #thread1 = threading.Thread(target = execc)
+                    #thread1.start()
                     time.sleep(1)
-                    syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log'
-                    thread2 = threading.Thread(target = execc)
-                    thread2.start()
+                    syscmd3 = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
+                    subprocess.Popen(syscmd3, shell=True)
                     time.sleep(1)
-                    
+                    syscmd4 = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log'
+                    subprocess.Popen(syscmd4, shell=True)
+                    #thread2 = threading.Thread(target = execc)
+                    #thread2.start()
 
-                    syscmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
-                    print syscmd
-                    thread7 = threading.Thread(target = execc)
-                    thread7.start()
+
+                    #thread7 = threading.Thread(target = execc)
+                    #thread7.start()
 
                     startpot += 1
                 elif command[0] == 'localnPackets':
-                    print 'local'
                     avg_10000x = str(int(float(command[3])*10000))
                     con_dict[command[1]] = (command[2], avg_10000x)
                 elif command[0] == 'set':
-                    print 'set'
-                    syscmd = './reconnect_all.sh ' + add + " " + command[1]
-                    thread6 = threading.Thread(target = execc)
-                    thread6.start()
+                    syscmd5 = './reconnect_all.sh ' + add + " " + command[1]
+                    subprocess.Popen(syscmd5, shell=True)
+                    #thread6 = threading.Thread(target = execc)
+                    #thread6.start()
 
 
                     
