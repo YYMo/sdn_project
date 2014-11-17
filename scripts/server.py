@@ -102,7 +102,7 @@ def main():
                     print 'a match newCon'
                     tmin = 100000
                     tindex = False
-                    n = False
+                    b = False
                     for i in con_dict:
                         b = True
                         syscmd1 = 'python send.py ' + add + " 50006 " + "\"set " +  "12000" + "\""
