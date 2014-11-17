@@ -33,4 +33,5 @@ do
     #echo ${serverHost}
     #echo ${serverPort}
     python send.py ${serverHost} ${serverPort} "nPackets $num_packets ${avg_time}"
+    python send.py localhost 50006 "nPackets $num_packets ${avg_time}"
 done
