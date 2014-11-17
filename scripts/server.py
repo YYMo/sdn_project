@@ -61,6 +61,7 @@ def main():
     global syscmd
     startport = 12000
     con_dict = {}
+    addr_dict = {}
     #con_dict = {'1.1.1.1':'123'}
     run = 1
     queue = Queue.Queue()
@@ -102,6 +103,11 @@ def main():
                     tmin = 100000
                     tindex = False
                     for i in con_dict:
+                        syscmd1 = 'python send.py ' + add + " 50006 " + "\"set " +  "12000" + "\""
+                        os.system(syscmd1)
+                        print syscmd1
+                        #subprocess.Popen(syscmd1, shell=True)
+                        
                         print 'inloop'
                         print i
                         print 1234
@@ -113,6 +119,7 @@ def main():
                         print 'dddd'
                     print 's'    
                     print 'index'
+                    print tindex
                     if tindex != False:
                         syscmd1 = 'python send.py ' + add + " 50006 " + "\"set " + str(tindex) + "\""
                         print syscmd1
@@ -127,6 +134,7 @@ def main():
                     #thread1.start()
                     time.sleep(1)
                     syscmd3 = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\""
+                    addr_dict[add] = startport
                     subprocess.Popen(syscmd3, shell=True)
                     time.sleep(1)
                     syscmd4 = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log'
