@@ -65,7 +65,7 @@ def main():
     sckt_thread = threading.Thread(target = sr.loop)
     sckt_thread.start()
     while True:
-        time.sleep(1)
+        time.sleep(3)
         syscmd = 'echo ' + str(con_dict)+ ' > con_dict'
         thread3 = threading.Thread(target = execc)
         thread3.start()
@@ -96,11 +96,11 @@ def main():
                     syscmd = './c_l2.sh ' + command[1] + " " + command[1] + '.log'
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
-                    time.sleep(1)
+                    time.sleep(3)
                     syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + command[1] + '.log'
                     thread2 = threading.Thread(target = execc)
                     thread2.start()
-                    time.sleep(1)
+                    time.sleep(3)
 
                     
             except:
