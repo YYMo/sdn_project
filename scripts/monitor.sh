@@ -15,9 +15,6 @@ then
     interval=$2
 fi
 
-#portNumber Start From this
-$startPort
-startPort=12000
 prev_setController_time='setController.time'
 while ((1<10))
 do
@@ -30,7 +27,7 @@ do
        echo 'no fails'
     else
         echo '#1 fail'
-        #python send.py $1 50006 "newCon ${startPort}"
+        #python send.py $1 50006 "newCon"
         #./reconnect_fail.sh localhost ${startPort}
         #startPort=`expr $startPort + 1`
         $(date +'%m/%d/%Y %H:%M:%S') > $prev_setController_time
@@ -44,10 +41,8 @@ do
         echo 'no fails'
     else 
         echo '#2 fail'
-        python send.py $1 50006 "newCon ${startPort}"
-        ./disconnect_all.sh
-        ./reconnect_all.sh $1 ${startPort}
-        startPort=`expr $startPort + 1`
+        python send.py $1 50006 "newCon"
+
     fi
 
     #3 packets per min or avg_time

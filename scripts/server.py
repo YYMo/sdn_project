@@ -58,6 +58,7 @@ def execc():
 def main():
     global run
     global syscmd
+    startport = 12000
     con_dict = {}
     run = 1
     queue = Queue.Queue()
@@ -91,8 +92,8 @@ def main():
                     thread5.start()
                 elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
-                    print 'create a controller on port' + command[1]
-                    syscmd = './c_l2.sh ' + command[1] + " " + command[1] + '.log'
+                    syscmd = './c_l2.sh ' + add + " " + str(startport) + " " + str(startport) + '.log'
+                    startpot += 1
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
                     time.sleep(3)
@@ -104,6 +105,12 @@ def main():
                     print 'local'
                     avg_10000x = str(int(float(command[3])*10000))
                     con_dict[command[1]] = (command[2], avg_10000x)
+                elif command[0] == 'set':
+                    print 'set'
+                    syscmd = './reconnect_all.sh' + command[1] + command[2]
+                    thread6 = threading.Thread(target = execc)
+                    thread6.start()
+
 
                     
             except:

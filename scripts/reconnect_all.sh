@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo ./disconnect_all.sh
 
 sudo ovs-vsctl show | \
 awk '/Bridge/ {print; getline; print; getline; print;}' | \
