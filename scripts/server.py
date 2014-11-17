@@ -95,6 +95,7 @@ def main():
                     tmin = 100000
                     tindex = False
                     for i in con_dict:
+                        print 'inloop'
                         if int(con_dict[i]) < tmin:
                             tindex = i
                             tmin = int(con_dict[i])
