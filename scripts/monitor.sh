@@ -57,10 +57,10 @@ do
         echo 'good responce time'
     else
         echo '#3 fail'
-        python send.py $1 50006 "newCon ${startPort}"
-        ./disconnect_all.sh
-        ./reconnect_all.sh $1 ${startPort}
-        startPort=`expr $startPort + 1`
+        #python send.py $1 50006 "newCon ${startPort}"
+        #./disconnect_all.sh
+        #./reconnect_all.sh $1 ${startPort}
+        #startPort=`expr $startPort + 1`
     fi
 
 done
