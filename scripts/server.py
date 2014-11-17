@@ -29,44 +29,78 @@ class SocketReceiver:
                 connection, address = self.serverObj.accept()
                 infds_c,outfds_c,errfds_c = select([connection,],[],[],3)
                 print 'Server Connected by: ', address
+
                 if len(infds_c) != 0:   
                     buf = connection.recv(8196)   
                     if len(buf) != 0:   
                         print str(buf)
-                        self.queue.put(str(address))
+                        print address
+                        self.queue.put(str(address[0]))
+                        self.queue.put(str(address[1]))
                         self.queue.put(str(buf))
                         connection.send('Echo:' + buf)
                 connection.close()
 
 run = 0
-def parseAdd(add):
-    str = add.split(',', '(', ')')
-    return str
+syscmd = 0
+
 
 def parse(msg):
     str = msg.split(' ')
     return str
 
+def execc():
+    global syscmd
+    print 'exec' + syscmd
+    os.system(syscmd)
+
+
 def main():
     global run
+    global syscmd
+    con_dict = {}
     run = 1
     queue = Queue.Queue()
     sr = SocketReceiver(queue)
     sckt_thread = threading.Thread(target = sr.loop)
     sckt_thread.start()
-
     while True:
-        time.sleep(3)
+        time.sleep(1)
+        print con_dict
         while queue.qsize():
             try:
                 add = queue.get(0)
+                port = queue.get(0)
                 msg = queue.get(0)
                 command = parse(msg)
                 print command[0]
-                address = parseAdd(add)
-                if(command[0] == 'nPackets'): #nPackets 123
+                print command[0] == 'newCon'
+
+                if command[0] == 'nPackets': #nPackets 123
+                    avg_10000x = str(int(float(command[2])*10000))
+                    if con_dict.has_key(add) == False:
+                        con_dict[add] = {}
+                        con_dict[add][port] = avg_10000x
                     print 'a match report'
-                    print address[0],":",  command[1]
+                    syscmd = 'echo ' + command[1] + ' > packets_per_min'
+                    thread1 = threading.Thread(target = execc)
+                    thread1.start()
+                    
+                    syscmd = 'echo ' + avg_10000x + ' > avg_time10000X'
+                    thread1 = threading.Thread(target = execc)
+                    thread1.start()
+                print 'here'
+                if command[0] == 'newCon': #newCon 12345
+                    print 'a match newCon'
+                    print 'create a controller on port' + command[1]
+                    syscmd = './c_l2.sh ' + command[1] + " " + command[1] + '.log'
+                    thread1 = threading.Thread(target = execc)
+                    thread1.start()
+                    sleep(3)
+                    syscmd = './stats_avg_flow_time.sh ' + add + " " + command[1] + '.log'
+                    thread1 = threading.Thread(target = execc)
+                    thread1.start()
+                    
             except:
                 pass
 

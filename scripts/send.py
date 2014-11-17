@@ -5,9 +5,11 @@ serverPort = 50006
 
 message = ['Hello network world']
 if len(sys.argv) > 1:
+    print sys.argv[1]
     serverHost = sys.argv[1]
     if len(sys.argv) > 2:
-	serverPort = int(sys.argv[2])
+        print sys.argv[2]
+        serverPort = int(sys.argv[2])
     if len(sys.argv) > 3:
         message = sys.argv[3:]
 

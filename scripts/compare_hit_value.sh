@@ -36,7 +36,7 @@ cur_hit=`ovs-dpctl show | \
 # check if the previous set controller time exists, if not, default to '01/01/1973 00:00:00'
 if [ ! -e $prev_setController_time ]
 then
-   echo "no previous set time..." 
+   #echo "no previous set time..." 
    prev_set=$(date -d '01/01/1973 00:00:00' +'%m:%d:%Y:%H:%M:%S')
    # notice: prev_setController_time='setController.time'
    prev_set_output=$(date -d '01/01/1973 00:00:00' +'%m/%d/%Y %H:%M:%S')
