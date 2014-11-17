@@ -92,22 +92,29 @@ def main():
                     thread5.start()
                 elif command[0] == 'newCon': #newCon 12345
                     print 'a match newCon'
+
                     syscmd = './c_l2.sh ' + add + " " + str(startport) + " " + str(startport) + '.log'
-                    startpot += 1
                     thread1 = threading.Thread(target = execc)
                     thread1.start()
                     time.sleep(3)
-                    syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + command[1] + '.log'
+                    syscmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log'
                     thread2 = threading.Thread(target = execc)
                     thread2.start()
                     time.sleep(3)
+                    
+
+                    syscmd = 'python send.py ' + add + " 50006 " + startpot
+                    thread7 = threading.Thread(target = execc)
+                    thread7.start()
+
+                    startpot += 1
                 elif command[0] == 'localnPackets':
                     print 'local'
                     avg_10000x = str(int(float(command[3])*10000))
                     con_dict[command[1]] = (command[2], avg_10000x)
                 elif command[0] == 'set':
                     print 'set'
-                    syscmd = './reconnect_all.sh' + command[1] + command[2]
+                    syscmd = './reconnect_all.sh' + add + command[1]
                     thread6 = threading.Thread(target = execc)
                     thread6.start()
 
