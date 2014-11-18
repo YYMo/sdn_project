@@ -13,4 +13,4 @@ rm -rf hit_miss.out
 rm -rf setController.time
 sudo python server.py $4 &
 sudo ./commander.sh &
-sudo ./monitor.sh $1 $2 $3&
+sudo ./monitor.sh $1 $2 $3 $4&
