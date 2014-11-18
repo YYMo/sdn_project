@@ -57,7 +57,7 @@ do
         #./reconnect_all.sh $1 ${startPort}
         #startPort=`expr $startPort + 1`
     fi
-    sleep 5
+    sleep 15
 
 
 done
