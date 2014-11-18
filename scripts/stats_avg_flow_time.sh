@@ -34,4 +34,5 @@ do
     #echo ${serverPort}
     python send.py ${serverHost} ${serverPort} "nPackets $num_packets ${avg_time}"
     python send.py localhost 50006 "localnPackets ${serverHost} $num_packets ${avg_time}"
+    echo ${avg_time} > avg_time
 done
