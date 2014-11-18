@@ -31,6 +31,8 @@ do
         #./reconnect_fail.sh localhost ${startPort}
         #startPort=`expr $startPort + 1`
         $(date +'%m/%d/%Y %H:%M:%S') > $prev_setController_time
+        sleep 15
+        continue
         
     fi
     
@@ -42,6 +44,8 @@ do
     else 
         echo 'Connection Loss, request for a controllerssssss'
         python send.py $1 50006 "newCon"
+        sleep 15
+        continue
 
     fi
 
