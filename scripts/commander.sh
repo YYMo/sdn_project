@@ -1,6 +1,7 @@
 #!/bin/bash
 start_line=1
 line_N
+touch command.txt
 while ((1<10))
 do
     line_num=`awk 'END{print NR}' 'command.txt'`

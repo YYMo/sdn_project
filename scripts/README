@@ -1,6 +1,16 @@
 SDN coure project
 sudo mn --switch ovsk --controller ref --topo tree,depth=2,fanout=8
 
+on Controller Machine
+sudo python server.py
+sudo ./server.sh
+
+
+on Mininet Machine
+sudo mn sudo mn --switch ovsk --controller ref --topo tree,depth=2,fanout=8
+sudo ./client.sh
+
+
 !! install awk fisrt 
 sudo apt-get install gawk (in Ubuntu)
 
