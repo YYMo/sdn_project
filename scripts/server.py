@@ -77,6 +77,7 @@ def main():
 
                 if command[0] == 'nPackets': #nPackets 123
                     avg_10000x = str(int(float(command[2])*10000))
+                    outputfile('avg_time', avg_10000x, 'w+')
                     con_dict[add] = (command[1], avg_10000x)
                     #print con_dict
                 elif command[0] == 'newCon2': #newCon 12345
