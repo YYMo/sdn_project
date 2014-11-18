@@ -100,20 +100,6 @@ def main():
                         outputfile('command.txt', cmd, 'a')
                         continue
 
-'''
-                    for i in con_dict:
-                        b =True
-                        #print 'sssssssss', con_dict[i][1]
-                        if int(con_dict[i][1]) < tmin:
-                            tindex = i
-                            tmin = con_dict[i][1]
-                    #print tindex
-                    if b:
-                        #print 'sssssssss',
-                        cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(addr_dict[tindex]) + "\"" + " &"
-                        outputfile('command.txt', cmd, 'a')
-                        continue
-'''
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
 
