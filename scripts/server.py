@@ -67,7 +67,6 @@ def main():
     sckt_thread.start()
     outputfile('command.txt', '#!/bin/bash', 'w+')
     while True:
-        time.sleep(1)
         while queue.qsize():
             try:
                 add = queue.get(0)
@@ -85,20 +84,24 @@ def main():
                 elif command[0] == 'newCon': #newCon 12345
                     tmin = 100000
                     tindex = False
+                    b = False
                     for i in con_dict:
-                        if con_dict[i] < tmin:
+                        b =True
+                        print 'sssssssss', con_dict[i][1]
+                        if int(con_dict[i][1]) < tmin:
                             tindex = i
-                            tmin = con_dict[i]
-
-                    if tindex != False:
-                        cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(tindex) + "\"" + " &"
+                            tmin = con_dict[i][1]
+                    print tindex
+                    if b:
+                        print 'sssssssss',
+                        cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(addr_dict[tindex]) + "\"" + " &"
                         outputfile('command.txt', cmd, 'a')
                         continue
 
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
 
-                    con_dict[add] = startport
+                    addr_dict[add] = startport
                     print con_dict
                     
                     cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
@@ -114,7 +117,10 @@ def main():
                     con_dict[command[1]] = (command[2], avg_10000x)
                 
                 elif command[0] == 'set':
+                    cmd = './disconnect_all.sh '+ " &"
+                    outputfile('command.txt', cmd, 'a') 
                     cmd = './reconnect_all.sh ' + add + " " + command[1] + " &"
+
                     outputfile('command.txt', cmd, 'a')       
             except:
                 pass

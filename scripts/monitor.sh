@@ -1,5 +1,5 @@
 #!/bin/bash
-#./monitor 192.168.44.32 6789 5(s)
+#./monitor 192.168.44.32
 $fail_number
 $controller_ip
 $interval
@@ -57,7 +57,7 @@ do
         #./reconnect_all.sh $1 ${startPort}
         #startPort=`expr $startPort + 1`
     fi
-    sleep 3
+    sleep 5
 
 
 done
