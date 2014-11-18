@@ -66,6 +66,7 @@ def main():
     sckt_thread = threading.Thread(target = sr.loop)
     sckt_thread.start()
     outputfile('command.txt', '#!/bin/bash', 'w+')
+    outputfile('connect_info.txt', 'Contrller info:', 'w+')
     while True:
         while queue.qsize():
             try:
@@ -86,6 +87,7 @@ def main():
                     outputfile('command.txt', cmd, 'a')
                     
                     cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
+                    outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
                     outputfile('command.txt', cmd, 'a')
 
                     cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
@@ -99,6 +101,7 @@ def main():
 
                     if startport == 12001:
                         cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(12000) + "\"" + " &"
+                        outputfile('connect_info.txt', 'controller on local:' + str(12000) +' connected to '+ add , 'a')
                         outputfile('command.txt', cmd, 'a')
                         continue
 
@@ -108,8 +111,9 @@ def main():
                     addr_dict[add] = startport
                     #print con_dict
                     
-                    cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
+                    cmd = 'python send.py ' + add + " 50006 " + "\"set " +  + "\"" + " &"
                     outputfile('command.txt', cmd, 'a')
+                    outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
 
                     cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
