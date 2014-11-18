@@ -9,7 +9,7 @@ class SocketReceiver:
     def __init__(self, queue):
         self.queue = queue
         self.host = ''
-        self.port = sys.argv[1]
+        self.port = int(sys.argv[1])
         self.serverObj = socket(AF_INET, SOCK_STREAM)
         self.serverObj.bind((self.host, self.port))
         self.serverObj.listen(5)
@@ -86,11 +86,11 @@ def main():
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
                     
-                    cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
+                    cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' ' + "\"set " + str(startport) + "\"" + " &"
                     outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
                     outputfile('command.txt', cmd, 'a')
 
-                    cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
+                    cmd = './stats_avg_flow_time.sh ' + add + ' ' + sys.argv[1] + ' ' + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
 
 
@@ -100,7 +100,7 @@ def main():
                     b = False
 
                     if startport == 12001:
-                        cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(12000) + "\"" + " &"
+                        cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " + str(12000) + "\"" + " &"
                         outputfile('connect_info.txt', 'Mininets switches on '+ add + 'lost connection to controller', 'a')
                         outputfile('connect_info.txt', 'Controller on port '+ str(12000) + ' is available', 'a')
                         outputfile('connect_info.txt', 'controller on local:' + str(12000) +' connected to '+ add , 'a')
@@ -116,12 +116,12 @@ def main():
                     addr_dict[add] = startport
                     #print con_dict
                     
-                    cmd = 'python send.py ' + add + " 50006 " + "\"set " +  + "\"" + " &"
+                    cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " +  + "\"" + " &"
                     outputfile('command.txt', cmd, 'a')
 
                     outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
 
-                    cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
+                    cmd = './stats_avg_flow_time.sh ' + add + ' ' + sys.argv[1] + ' '  + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
 
                     startport += 1

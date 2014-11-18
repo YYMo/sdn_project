@@ -1,5 +1,5 @@
 #!/bin/bash
-#./monitor 192.168.44.32 sleep_time check_timeout
+#./monitor 192.168.44.32 sleep_time check_timeout serverport
 $fail_number
 $controller_ip
 $interval
@@ -35,7 +35,7 @@ do
         echo 'no fails' > t.txt
     else
         echo '#1 fail'
-        python send.py $1 50006 "newCon2"
+        python send.py $1 $4 "newCon2"
         #./reconnect_fail.sh localhost ${startPort}
         #startPort=`expr $startPort + 1`
         $(date +'%m/%d/%Y %H:%M:%S') > $prev_setController_time
@@ -52,7 +52,7 @@ do
         echo 'no fails' > t.txt
     else 
         echo 'Connection Loss, request for a controllers'
-        python send.py $1 50006 "newCon"
+        python send.py $1 $4 "newCon"
         sleep ${sleep_time}
         continue
 
