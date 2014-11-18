@@ -18,7 +18,8 @@ do
 
     sed -n "${start_line},${line_num}p" 'command.txt' > temp_run.sh
     chmod +x temp_run.sh
-    ./temp_run.sh
+    cp temp_run.sh  t_run.sh
+    ./t_run.sh
     
     ((start_line=$line_num+1)) 
 
