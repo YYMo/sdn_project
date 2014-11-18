@@ -82,7 +82,14 @@ def main():
                     outputfile('avg_time', avg_10000x, 'w+')
                     con_dict[add] = (command[1], avg_10000x)
                     #print con_dict
-                elif command[0] == 'newCon3': #newCon 12345
+                elif command[0] == 'newCon2': #newCon 12345
+                    cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " + str(12001) + "\"" + " &"
+                    outputfile('connect_info.txt', 'Mininets switches on '+ add + ' lost connection to controller', 'a')
+                    outputfile('connect_info.txt', 'Controller on port '+ str(12001) + ' is available', 'a')
+                    outputfile('connect_info.txt', 'controller on local:' + str(12001) +' connected to '+ add , 'a')
+                    outputfile('command.txt', cmd, 'a')
+                    
+                    '''
                     startport = 12001
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
@@ -93,7 +100,7 @@ def main():
 
                     cmd = './stats_avg_flow_time.sh ' + add + ' ' + sys.argv[1] + ' ' + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
-
+                    '''
 
                 elif command[0] == 'newCon': #newCon 12345
                     tmin = 100000
