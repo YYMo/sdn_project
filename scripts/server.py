@@ -49,7 +49,7 @@ def parse(msg):
     return str
 
 def outputfile(fileName, Str, bNew):
-    print ">> " + Str
+    #print ">> " + Str
     output = open(fileName, bNew)
     try:
         output.write(Str + '\n')
