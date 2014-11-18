@@ -66,7 +66,7 @@ do
     else
         echo 'no fails' > t.txt
         #echo '#3 fail'
-        #python send.py $1 50006 "newCon ${startPort}"
+        #python send.py $1 ${serverPort} "newCon ${startPort}"
         #./disconnect_all.sh
         #./reconnect_all.sh $1 ${startPort}
         #startPort=`expr $startPort + 1`
