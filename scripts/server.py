@@ -81,7 +81,7 @@ def main():
                     outputfile('avg_time', avg_10000x, 'w+')
                     con_dict[add] = (command[1], avg_10000x)
                     #print con_dict
-                elif command[0] == 'newCon2': #newCon 12345
+                elif command[0] == 'newCon3': #newCon 12345
                     startport = 12001
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
@@ -101,7 +101,7 @@ def main():
 
                     if startport == 12001:
                         cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " + str(12000) + "\"" + " &"
-                        outputfile('connect_info.txt', 'Mininets switches on '+ add + 'lost connection to controller', 'a')
+                        outputfile('connect_info.txt', 'Mininets switches on '+ add + ' lost connection to controller', 'a')
                         outputfile('connect_info.txt', 'Controller on port '+ str(12000) + ' is available', 'a')
                         outputfile('connect_info.txt', 'controller on local:' + str(12000) +' connected to '+ add , 'a')
                         outputfile('command.txt', cmd, 'a')
@@ -109,14 +109,14 @@ def main():
 
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
-                    outputfile('connect_info.txt', 'Mininets switches on '+ add + 'lost connection to controller', 'a')
+                    outputfile('connect_info.txt', 'Mininets switches on '+ add + ' lost connection to controller', 'a')
                     outputfile('connect_info.txt', 'No controller running now ... ' + str(startport), 'a')
                     outputfile('connect_info.txt', 'Create a new controller on port' + str(startport), 'a')
 
                     addr_dict[add] = startport
                     #print con_dict
                     
-                    cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " +  + "\"" + " &"
+                    cmd = 'python send.py ' + add + ' ' + sys.argv[1] + ' '  + "\"set " + str(startport) + "\"" + " &"
                     outputfile('command.txt', cmd, 'a')
 
                     outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
