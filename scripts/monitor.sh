@@ -26,8 +26,8 @@ do
     then
         echo 'no fails' > t.txt
     else
-        #echo '#1 fail'
-        #python send.py $1 50006 "newCon"
+        echo '#1 fail'
+        python send.py $1 50006 "newCon2"
         #./reconnect_fail.sh localhost ${startPort}
         #startPort=`expr $startPort + 1`
         $(date +'%m/%d/%Y %H:%M:%S') > $prev_setController_time

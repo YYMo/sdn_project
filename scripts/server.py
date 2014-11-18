@@ -79,6 +79,15 @@ def main():
                     avg_10000x = str(int(float(command[2])*10000))
                     con_dict[add] = (command[1], avg_10000x)
                     #print con_dict
+                elif command[0] == 'newCon2': #newCon 12345
+                    cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
+                    outputfile('command.txt', cmd, 'a')
+                    
+                    cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
+                    outputfile('command.txt', cmd, 'a')
+
+                    cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
+                    outputfile('command.txt', cmd, 'a')
 
 
                 elif command[0] == 'newCon': #newCon 12345
