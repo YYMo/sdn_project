@@ -24,7 +24,7 @@ do
     #1 ping timeout 
     if [ ${bDisCon} -eq 0 ] #legal
     then
-       #echo 'no fails'
+        echo 'no fails' > t.txt
     else
         #echo '#1 fail'
         #python send.py $1 50006 "newCon"
@@ -38,7 +38,7 @@ do
     fail_number=` wc -l fail_nodes.txt | awk '{print $1}'`
     if [ ${fail_number} -eq 0 ] #legal
     then
-        #echo 'no fails'
+        echo 'no fails' > t.txt
     else 
         echo 'Connection Loss, request for a controllerssssss'
         python send.py $1 50006 "newCon"
@@ -49,8 +49,9 @@ do
     avg_time=`cat avg_time10000X`
     if [ ${avg_time} -lt 20000 ]
     then
-        #echo 'good responce time'
+        echo 'no fails' > t.txt
     else
+        echo 'no fails' > t.txt
         #echo '#3 fail'
         #python send.py $1 50006 "newCon ${startPort}"
         #./disconnect_all.sh
