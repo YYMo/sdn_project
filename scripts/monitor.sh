@@ -3,6 +3,7 @@
 $fail_number
 $controller_ip
 $interval
+start_line=1
 
 echo $#
 if [ $# -gt 1 ]
@@ -18,7 +19,6 @@ fi
 prev_setController_time='setController.time'
 while ((1<10))
 do
-    sleep 10
     ./check_fail.sh > fail_nodes.txt
     bDisCon=`./compare_hit_value.sh`
     #1 ping timeout 
@@ -57,5 +57,7 @@ do
         #./reconnect_all.sh $1 ${startPort}
         #startPort=`expr $startPort + 1`
     fi
+    sleep 3
+
 
 done
