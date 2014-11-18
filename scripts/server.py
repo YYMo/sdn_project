@@ -101,18 +101,24 @@ def main():
 
                     if startport == 12001:
                         cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(12000) + "\"" + " &"
+                        outputfile('connect_info.txt', 'Mininets switches on '+ add + 'lost connection to controller', 'a')
+                        outputfile('connect_info.txt', 'Controller on port '+ str(12000) + ' is available', 'a')
                         outputfile('connect_info.txt', 'controller on local:' + str(12000) +' connected to '+ add , 'a')
                         outputfile('command.txt', cmd, 'a')
                         continue
 
                     cmd = './c_l2.sh ' + str(startport) + " " + str(startport) + '.log' + " &"
                     outputfile('command.txt', cmd, 'a')
+                    outputfile('connect_info.txt', 'Mininets switches on '+ add + 'lost connection to controller', 'a')
+                    outputfile('connect_info.txt', 'No controller running now ... ' + str(startport), 'a')
+                    outputfile('connect_info.txt', 'Create a new controller on port' + str(startport), 'a')
 
                     addr_dict[add] = startport
                     #print con_dict
                     
                     cmd = 'python send.py ' + add + " 50006 " + "\"set " +  + "\"" + " &"
                     outputfile('command.txt', cmd, 'a')
+
                     outputfile('connect_info.txt', 'controller on local:' + str(startport) +' connected to '+ add , 'a')
 
                     cmd = './stats_avg_flow_time.sh ' + add + " 50006 " + str(startport) + '.log' + " &"
