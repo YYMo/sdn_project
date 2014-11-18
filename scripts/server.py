@@ -7,6 +7,7 @@ import time
 
 class SocketReceiver:
     def __init__(self, queue):
+        print 'init server'
         self.queue = queue
         self.host = ''
         self.port = int(sys.argv[1])
@@ -48,7 +49,7 @@ def parse(msg):
     return str
 
 def outputfile(fileName, Str, bNew):
-    #print ">> " + Str
+    print ">> " + Str
     output = open(fileName, bNew)
     try:
         output.write(Str + '\n')
