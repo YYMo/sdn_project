@@ -9,10 +9,11 @@ do
     #echo 'end: '$line_num
 
     ((line_N=$line_num-$start_line)) 
+    ((testN=$line_N+1))
     #echo $line_N
-    if [ ${line_N} -eq 0 ]
+    if [ ${testN} -eq 0 ]
     then
-    	sleep 3
+    	sleep 1
     	continue
     fi
 
