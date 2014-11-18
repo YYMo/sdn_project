@@ -78,22 +78,29 @@ def main():
                 if command[0] == 'nPackets': #nPackets 123
                     avg_10000x = str(int(float(command[2])*10000))
                     con_dict[add] = (command[1], avg_10000x)
-                    print con_dict
+                    #print con_dict
 
 
                 elif command[0] == 'newCon': #newCon 12345
                     tmin = 100000
                     tindex = False
                     b = False
+
+                    if startport == 12001:
+                        cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(12000) + "\"" + " &"
+                        outputfile('command.txt', cmd, 'a')
+                        continue
+
+
                     for i in con_dict:
                         b =True
-                        print 'sssssssss', con_dict[i][1]
+                        #print 'sssssssss', con_dict[i][1]
                         if int(con_dict[i][1]) < tmin:
                             tindex = i
                             tmin = con_dict[i][1]
-                    print tindex
+                    #print tindex
                     if b:
-                        print 'sssssssss',
+                        #print 'sssssssss',
                         cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(addr_dict[tindex]) + "\"" + " &"
                         outputfile('command.txt', cmd, 'a')
                         continue
@@ -102,7 +109,7 @@ def main():
                     outputfile('command.txt', cmd, 'a')
 
                     addr_dict[add] = startport
-                    print con_dict
+                    #print con_dict
                     
                     cmd = 'python send.py ' + add + " 50006 " + "\"set " + str(startport) + "\"" + " &"
                     outputfile('command.txt', cmd, 'a')
