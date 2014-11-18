@@ -9,7 +9,7 @@ class SocketReceiver:
     def __init__(self, queue):
         self.queue = queue
         self.host = ''
-        self.port = 50006
+        self.port = sys.argv[1]
         self.serverObj = socket(AF_INET, SOCK_STREAM)
         self.serverObj.bind((self.host, self.port))
         self.serverObj.listen(5)

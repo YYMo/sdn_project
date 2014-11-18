@@ -8,7 +8,9 @@ rm -rf hit_miss.out
 
 ##1 : check_timeout
 
+#4: server port
+
 rm -rf setController.time
-sudo python server.py &
+sudo python server.py $4 &
 sudo ./commander.sh &
 sudo ./monitor.sh $1 $2 $3&
